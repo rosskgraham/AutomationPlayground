@@ -4,9 +4,13 @@ import shutil
 
 files_path = Path("C:/git/FileExtensionChanger/files")
 meta_path = Path(files_path / "meta.csv")
-types = ["txt","ini","dat","bat"]
+types = ["txt", "ini", "dat", "bat"]
+
 
 def generate_files(folders: int = 100, min_files: int = 1, max_files: int = 100) -> int:
+    """
+    Generate fake extensionless files for testing with the same directory structure as the exported files.
+    """
     meta_path.unlink(missing_ok=True)
     if (files_path / "files").exists():
         shutil.rmtree(files_path / "files")
@@ -15,13 +19,15 @@ def generate_files(folders: int = 100, min_files: int = 1, max_files: int = 100)
         csv.write("folder,file,type\n")
         for folder in choices(range(100000, 999999), k=folders):
             for file in choices(range(100000, 999999), k=randint(min_files, max_files)):
+                file_type = choice(types)
                 file_path = files_path / "files" / str(folder) / str(file)
                 file_path.parent.mkdir(parents=True, exist_ok=True)
-                file_type = choice(types)
-                with open(file_path, "w") as f:
-                    f.write(f"Hello World\n{file}.{file_type}")
-                    file_count += 1
+
+                file_path.write_text(f"Hello World\n{file}.{file_type}")
                 csv.write(f"{folder},{file},{file_type}\n")
+                file_count += 1
+
     return file_count
 
-print(generate_files(100, 50, 100))
+
+print(generate_files(10, 50, 100))
