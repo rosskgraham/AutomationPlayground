@@ -1,0 +1,12 @@
+[project]
+name = "fileextensionchanger"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "alive-progress>=3.2.0",
+    "polars>=1.29.0",
+    "ruff>=0.11.8",
+    "uv>=0.7.2",
+]
