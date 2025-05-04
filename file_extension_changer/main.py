@@ -9,15 +9,7 @@ import polars as pl
 from collections import defaultdict
 from alive_progress import alive_it
 
-
-def get_files(path: Path) -> list[Path]:
-    paths = []
-    for p in path.iterdir():
-        if p.is_dir():
-            paths.extend(get_files(p))
-        else:
-            paths.append(p)
-    return paths
+from shared_utils import list_files
 
 
 files_path = Path("C:/git/FileExtensionChanger/files/files")
@@ -32,7 +24,7 @@ for folder, file_path, type in [
     mapping[folder].update({file_path: type})
 
 # Rename the files
-for file_path in alive_it(get_files(files_path)):
+for file_path in alive_it(list_files(files_path)):
     folder = file_path.parent.stem
     file = file_path.stem
     ext = mapping.get(folder, {}).get(file, "unmapped")

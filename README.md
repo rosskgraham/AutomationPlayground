@@ -1,9 +1,11 @@
-# File Extension Changer
+# U
 
-Script to add extensions to extensionless files.
+Dependencies are managed using uv. See getting started...
 
-Files are exported from a system and have no extensions.
+```powershell
+uv sync
+```
 
-Extensions are listed in a separate metadata file.
+Contents
 
-Read the metadata file and apply the extensions to the files.
+- File Extension Changer
