@@ -2,8 +2,8 @@ from pathlib import Path
 from random import randint, choices, choice
 import shutil
 
-files_path = Path("C:/git/FileExtensionChanger/files")
-meta_path = Path(files_path / "meta.csv")
+files_path = Path(__file__).parent /"test_data"
+meta_path = files_path / "meta.csv"
 types = ["txt", "ini", "dat", "bat"]
 
 
@@ -12,6 +12,7 @@ def generate_files(folders: int = 100, min_files: int = 1, max_files: int = 100)
     Generate fake extensionless files for testing with the same directory structure as the exported files.
     """
     meta_path.unlink(missing_ok=True)
+    meta_path.parent.mkdir(parents=True, exist_ok=True)
     if (files_path / "files").exists():
         shutil.rmtree(files_path / "files")
     file_count = 0

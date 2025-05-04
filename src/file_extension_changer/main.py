@@ -12,8 +12,8 @@ from alive_progress import alive_it
 from shared_utils import list_files
 
 
-files_path = Path("C:/git/FileExtensionChanger/files/files")
-meta_path = Path("C:/git/FileExtensionChanger/files/meta.csv")
+files_path = Path(__file__).parent / "test_data" / "files"
+meta_path = Path(__file__).parent / "test_data" / "meta.csv"
 
 # Make a dict to lookup file types for renaming
 # eg. {"folder1":{"file1":"txt","file2":"jpg"}}
@@ -25,7 +25,6 @@ for folder, file_path, type in [
 
 # Rename the files
 for file_path in alive_it(list_files(files_path)):
-    folder = file_path.parent.stem
-    file = file_path.stem
+    folder, file = file_path.parent.stem ,file_path.stem
     ext = mapping.get(folder, {}).get(file, "unmapped")
     file_path.rename(file_path.with_suffix(f".{ext}"))
