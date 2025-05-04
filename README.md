@@ -6,7 +6,7 @@ Let's spend more time automating the thing we want to do than it takes to do the
 
 **Contents**
 
-- [File Extension Changer](src\file_extension_changer\README.md)
+- [File Extension Changer](src/file_extension_changer/README.md)
 
 ## Getting started
 
